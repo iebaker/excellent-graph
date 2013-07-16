@@ -5,7 +5,6 @@
 import java.util.concurrent.Callable;
 float X = 0;
 float Y = 0;
-float R = 0;
 Screen screen;
 
 //FUNCTION is a class which holds a single function which
@@ -140,13 +139,13 @@ void setup() {
   
   Callable<Float> _LHS2 = new Callable() {
     public Float call() {
-      return (Float)( ( pow(X+R,2) + pow(Y,2) - 8) * (pow(X-R,2) + pow(Y,2) - 8) );
+      return (Float)( ( pow(X,2) + pow(Y,2) ) * (pow(X,2) + pow(Y,2) ) );
     }
   };
   
   Callable<Float> _RHS2 = new Callable() {
     public Float call() {
-      return (Float)( -1.0 );
+      return (Float)( 4.0 );
     }
   };
   
@@ -154,7 +153,7 @@ void setup() {
   Plot p2 = new Plot(new Function(_LHS2), new Function(_RHS2), color(0, 0, 255));
   screen = new Screen(-10, 10, -10, 10);
   screen.addPlot(p1);
+  screen.addPlot(p2);
   screen.display();
 }
-
 
